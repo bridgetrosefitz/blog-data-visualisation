@@ -1,0 +1,8 @@
+- Set up basic tests
+- Build API tool
+- Build R7 logic
+- Build R7 line chart, with one line per topic
+- MAYBE Build individual chart for each topic
+- MAYBE Build select boxes for geographies, to filter line chart data
+- Improve UI
+- Change fetch requests > Apollo
