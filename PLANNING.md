@@ -1,8 +1,11 @@
-- Set up basic tests
-- Build API tool
-- Build R1 line chart, with one line per topic
+<!-- - Set up basic tests -->
+<!-- - Build API tool -->
+- Build R1 line chart with dummy data
+- Bring real data into line chart
+- Build logic to decide what minimum acceptable probability is to assign 'correct' topic
 - Build R7 logic
 - Build R7 line chart, with one line per topic
+- MAYBE Annotate chart to explain how the topic was determined
 - MAYBE Build individual chart for each topic
 - MAYBE Build select boxes for *other variable*, to filter line chart data
 - Improve UI
