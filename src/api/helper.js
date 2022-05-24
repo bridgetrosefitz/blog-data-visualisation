@@ -1,0 +1,1 @@
+export const API_HOST = 'https://fakerql.nplan.io/graphql'
