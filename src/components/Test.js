@@ -28,7 +28,7 @@ const Test = props => {
     return concatenatedSentence
   }
 
-  return data.allPosts.forEach(({ title, published, likelyTopics }, index) => {
+  return data.allPosts.map(({ title, published, likelyTopics }, index) => {
     let topic = {label: '', likelihood: 0}
 
     likelyTopics.forEach(possibleTopic => {
@@ -45,7 +45,7 @@ const Test = props => {
           {`${toProperCase(topic.label)} - ${toProperCase(title)}`}
         </p>
       </div>)
-    }
+    } else return null
   });
 }
 
