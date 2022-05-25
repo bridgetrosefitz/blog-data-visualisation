@@ -4,7 +4,7 @@ import {
 
 export const ALL_POSTS = gql`
   query {
-    allPosts(count: 1000) {
+    allPosts(count: 500) {
       title
       published
       createdAt

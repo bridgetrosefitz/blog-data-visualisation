@@ -7,3 +7,4 @@
 - I built a method on the front end to turn the data into the shape I wanted for my chart.
 - Would do a better logic for deciding acceptable topic based on likelihood
 - It looks like the first likely topic in the array is always the highest likelihood match
+- I tested up to 100k datapoints and they all seem to be from 2019, so I haven't built a check for multiple years in createTopicsData

@@ -10,8 +10,6 @@ const Test = props => {
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error :(</p>
 
-  console.log(data)
-
   const toProperCase = sentence => {
     
     const wordsInTitle = sentence.split(" ")

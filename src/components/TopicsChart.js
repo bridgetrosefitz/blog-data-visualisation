@@ -2,7 +2,6 @@ import {
   AnimatedAxis,
   AnimatedGrid,
   AnimatedLineSeries,
-  Tooltip,
   XYChart
 } from "@visx/xychart"
 import {
@@ -26,7 +25,6 @@ const TopicsChart = () => {
     yAccessor: (d) => d.y
   }
 
-  
   return (
       <XYChart
         height={270}
