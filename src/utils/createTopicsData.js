@@ -1,21 +1,29 @@
 export const createTopicsData = rawData => {
+
   const topicsData = {}
 
   rawData.forEach(post => {
+
     // Get the most likely topic for this post
-    let topic = ''
+    let topicObject
 
     post.likelyTopics.forEach(possibleTopic => {
-      if (possibleTopic.likelihood > topic.likelihood) {
-        topic = possibleTopic
+      if(!topicObject) {
+       topicObject = possibleTopic   
       }
+
+      if (possibleTopic.likelihood > topicObject.likelihood) {
+        topicObject = possibleTopic
+      } 
       // Add logic for if there are two topics with equal likelihood
     })
 
+    const topic = topicObject.label
+
     // Prepare the date of the current post
-    const datePostCreated = new Date(parseInt(topic.createdAt))
-    const yearPostCreated = datePostCreated.getFullYear
-    const monthPostCreated = datePostCreated.getMonth
+    const datePostCreated = new Date(parseInt(post.createdAt))
+    const yearPostCreated = datePostCreated.getFullYear()
+    const monthPostCreated = datePostCreated.toLocaleString("en-US", { month: "2-digit" })
     const dateString = `${yearPostCreated}-${monthPostCreated}`
 
     // Pre-prepare a new topic-date object
@@ -44,7 +52,9 @@ export const createTopicsData = rawData => {
       topicsData[topic] = [newTopicDateObject]
     }
 
+    
   })
+  return topicsData
 
 }
 

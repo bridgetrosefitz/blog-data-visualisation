@@ -9,8 +9,7 @@ function App() {
         <h1>Explore blogging trends</h1>
       </header>
 
-      {/* <TopicsChart/> */}
-      <LineChart2 />
+      <TopicsChart/>
     </div>
   );
 }

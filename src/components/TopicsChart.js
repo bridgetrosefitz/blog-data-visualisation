@@ -162,17 +162,18 @@ const TopicsChart = () => {
   const { loading, error, data } = useQuery(ALL_POSTS);
   const colors = ['#ff9a9e', '#a18cd1', '#fad0c4', '#fcb69f', '#a6c0fe', '#cfd9df', '#fccb90', '#43e97b', '#4facfe', '#fee140', '#30cfd0', '#330867', '#fed6e3', '#5ee7df']
   const tickLabelOffset = 10;
-  const accessors = {
-    xAccessor: (d) => new Date(`${d.x}T00:00:00`),
-    yAccessor: (d) => d.y
-  };
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error :(</p>
 
-  const dataForChart = createTopicsData(data)
-  
+  const dataForChart = createTopicsData(data.allPosts)
 
+    const accessors = {
+    xAccessor: (d) => new Date(`${d.x}T00:00:00`),
+    yAccessor: (d) => d.y
+  };
+
+  
   return (
       <XYChart
         height={270}
