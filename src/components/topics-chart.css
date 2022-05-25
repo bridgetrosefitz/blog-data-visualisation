@@ -4,6 +4,7 @@ h2 {
 
 .explanatory-text {
   margin: 1.5em;
+  padding-left: 0;
 }
 
 .explanatory-text li {
@@ -14,4 +15,6 @@ h2 {
 
 .fine-print {
   font-size: 0.5em;
+  max-width: 500px;
+  margin: 0 auto;
 }

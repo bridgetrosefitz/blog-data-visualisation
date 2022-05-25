@@ -1,3 +1,4 @@
+// This function requires rawData in the specific shape that is returned from the Apollo / GraphQL request in /api/index.js
 export const createTopicsData = rawData => {
 
   const topicsData = {}
@@ -15,7 +16,7 @@ export const createTopicsData = rawData => {
       if (possibleTopic.likelihood > topicObject.likelihood) {
         topicObject = possibleTopic
       } 
-      // Add logic for if there are two topics with equal likelihood
+      // Later, add logic for how to explicitly handle if there are two topics with equal likelihood
     })
 
     const topic = topicObject.label
@@ -33,7 +34,7 @@ export const createTopicsData = rawData => {
       date: datePostCreated
     }
 
-    // If a key for the topic exists...
+    // If a key for the topic already exists...
     if (topicsData[topic]) {
 
       // See if a topic-date object within that topic is from the same year-month as the current post
@@ -51,9 +52,7 @@ export const createTopicsData = rawData => {
     } else {
       // If a key for the topic doesn't exist, make a new key and push the topic-date object into a new array
       topicsData[topic] = [newTopicDateObject]
-    }
-
-    
+    }    
   })
 
   // Sort the topic-date objects by their year-month
@@ -65,11 +64,11 @@ export const createTopicsData = rawData => {
 
   // Ensure that each topic has a data point for every month of the year
   Object.keys(topicsData).forEach(topic => {
-    // If the length of the topic is not 12
-    // Go through the sorted topic-date objects, and if the month is not 1 more than the previous month, insert an object which has y: 0 for that month
     
     let currentMonth = 0
- 
+
+    // Go through the sorted topic-date objects, and if the month is not the index you would expect as we increment currentMonth, 
+    // i.e. the month is missing, insert an object which has y: 0 for that month
     while(currentMonth < 12) {
       if(topicsData[topic][currentMonth] && topicsData[topic][currentMonth].date.getMonth() !== currentMonth) {
         // Create a new topic-date object with the missing month, and y: 0
@@ -79,7 +78,7 @@ export const createTopicsData = rawData => {
         topicsData[topic].splice(currentMonth, 0, { x: dateString, y: 0, date: null })
       } else if (!topicsData[topic][currentMonth]) {
         // Create a new topic-date object with the missing month, after we've reached the last index in the array
-        // Grabbing the previous object's year, because we are assuming we're only getting data from the same year (2019), see README
+        // Grab the previous object's year, because we are assuming we're only getting data from the same year (2019), see README.md for more info
         const year = topicsData[topic][currentMonth - 1].x.substring(0,4)
         const month = currentMonth < 9 ? `0${currentMonth + 1}` : currentMonth + 1
         const dateString = `${year}-${month}`

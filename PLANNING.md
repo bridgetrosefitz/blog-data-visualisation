@@ -1,18 +1,20 @@
+<!-- These were my personal planning notes. I've left them as-is -->
+
 <!-- - Set up basic tests -->
 <!-- - Build API tool -->
 <!-- - Build R1 line chart with dummy data -->
 <!-- - Bring real data into line chart -->
 <!-- - Fill empty months with 0 -->
 - Ensure code is commented
-- Build legend
-- Do README
+<!-- - Build legend -->
+<!-- - Do README -->
 - Build logic to decide what minimum acceptable probability is to assign 'correct' topic
 - Build R28 logic
 - Build R28 line chart, with one line per topic
-- MAYBE Annotate chart to explain how the topic was determined
+<!-- - MAYBE Annotate chart to explain how the topic was determined -->
 - MAYBE Build individual chart for each topic
 - MAYBE Build select boxes for *other variable*, to filter line chart data
-- Improve UI
+<!-- - Improve UI -->
 <!-- - Change fetch requests > Apollo -->
 - Refactor repetitive code
 
