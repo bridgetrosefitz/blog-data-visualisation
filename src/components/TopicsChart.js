@@ -2,13 +2,15 @@ import {
   AnimatedAxis,
   AnimatedGrid,
   AnimatedLineSeries,
-  XYChart
+  XYChart,
+  Tooltip,
 } from "@visx/xychart"
 import {
   useQuery
 } from '@apollo/client'
 import { ALL_POSTS } from '../api'
 import { createTopicsData } from "../utils/createTopicsData"
+
 
 const TopicsChart = () => {
   const { loading, error, data } = useQuery(ALL_POSTS)
@@ -20,18 +22,33 @@ const TopicsChart = () => {
 
   const dataForChart = createTopicsData(data.allPosts)
 
-    const accessors = {
+  const accessors = {
     xAccessor: (d) => new Date(`${d.x}T00:00:00`),
     yAccessor: (d) => d.y
   }
 
   return (
+    <>
       <XYChart
-        height={270}
+        height={400}
+        width={800}
         margin={{ left: 60, top: 35, bottom: 38, right: 27 }}
         xScale={{ type: "time" }}
         yScale={{ type: "linear" }}
       >
+        <Tooltip
+          snapTooltipToDatumX
+          snapTooltipToDatumY
+          showVerticalCrosshair
+          renderTooltip={({ tooltipData }) => (
+            <div>
+              <div>
+                {tooltipData.nearestDatum.key}
+              </div>
+              {accessors.yAccessor(tooltipData.nearestDatum.datum)}
+            </div>
+          )}
+        />
         <AnimatedGrid
           columns={false}
           numTicks={4}
@@ -67,6 +84,7 @@ const TopicsChart = () => {
           />)
         })}
       </XYChart>
+    </>
   )
 }
 
