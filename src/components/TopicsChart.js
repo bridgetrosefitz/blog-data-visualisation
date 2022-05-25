@@ -31,7 +31,7 @@ const TopicsChart = () => {
 
   return (
     <>
-      <h2 >Posts per month by topic</h2>
+      <h2 >Posts per month by topic (2019)*</h2>
       <XYChart
         height={400}
         width={800}
@@ -84,6 +84,13 @@ const TopicsChart = () => {
           />)
         })}
       </XYChart>
+      <ul className='explanatory-text'>
+        <li>Take a look at the popularity of blog posts on different topics over time. </li>
+        <li>Browse the graph with your mouse to view more detail.</li>
+      </ul>
+      <p className='fine-print'>
+        * Data represents both published and unpublished posts. Based on a sample of 1000 posts from 2019.
+      </p>
     </>
   )
 }
