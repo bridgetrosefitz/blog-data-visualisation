@@ -1,6 +1,5 @@
 import './App.css';
-import Test from './components/Test'
-import LineChart from './components/LineChart';
+import TopicsChart from './components/TopicsChart';
 
 function App() {
 
@@ -9,7 +8,9 @@ function App() {
       <header>
         <h1>Explore blogging trends</h1>
       </header>
-      <LineChart/>
+
+      {/* <TopicsChart/> */}
+      <LineChart2 />
     </div>
   );
 }
