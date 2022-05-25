@@ -29,7 +29,8 @@ export const createTopicsData = rawData => {
     // Pre-prepare a new topic-date object
     const newTopicDateObject = {
       x: dateString,
-      y: 1
+      y: 1,
+      date: datePostCreated
     }
 
     // If a key for the topic exists...
@@ -54,6 +55,13 @@ export const createTopicsData = rawData => {
 
     
   })
+
+  Object.keys(topicsData).forEach(topic => {
+    topicsData[topic].sort((a,b) => {
+     return a.date > b.date ? 1 : -1
+    })
+  })
+    
   return topicsData
 
 }
