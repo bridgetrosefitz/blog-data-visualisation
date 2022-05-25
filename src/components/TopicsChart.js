@@ -35,7 +35,7 @@ const TopicsChart = () => {
       <XYChart
         height={400}
         width={800}
-        margin={{ left: 60, top: 20, bottom: 10, right: 60 }}
+        margin={{ left: 60, top: 20, bottom: 40, right: 60 }}
         xScale={{ type: "time" }}
         yScale={{ type: "linear" }}
       >

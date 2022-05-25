@@ -8,7 +8,6 @@ function App() {
       <header>
         <h1>Explore blogging trends</h1>
       </header>
-
       <TopicsChart/>
     </div>
   );
