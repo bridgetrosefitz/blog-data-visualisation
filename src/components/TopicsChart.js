@@ -19,7 +19,7 @@ const TopicsChart = () => {
   const colors = ['#ff9a9e', '#a18cd1', '#fad0c4', '#fcb69f', '#a6c0fe', '#cfd9df', '#fccb90', '#43e97b', '#4facfe', '#fee140', '#30cfd0', '#330867', '#fed6e3', '#5ee7df']
   const tickLabelOffset = 10
 
-  if (loading) return <p>Loading...</p>
+  if (loading) return (<><p>Loading...</p><p className='fine-print'>...just a few seconds while we fetch 1,000 rows of data.</p></>)
   if (error) return <p>Error :(</p>
 
   const dataForChart = createTopicsData(data.allPosts)
