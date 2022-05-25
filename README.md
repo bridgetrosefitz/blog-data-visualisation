@@ -10,3 +10,4 @@
 - I tested up to 100k datapoints and they all seem to be from 2019, so I haven't built a check for multiple years in createTopicsData
 - Improve the number of months visible on the X axis
 - Fix coloring of tooltip
+- Improve time to load

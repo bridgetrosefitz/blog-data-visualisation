@@ -3,13 +3,15 @@ import {
   AnimatedGrid,
   AnimatedLineSeries,
   XYChart,
-  Tooltip,
+  Tooltip
 } from "@visx/xychart"
+import { toProperCase } from "../utils/toProperCase"
 import {
   useQuery
 } from '@apollo/client'
 import { ALL_POSTS } from '../api'
 import { createTopicsData } from "../utils/createTopicsData"
+import './topics-chart.css'
 
 
 const TopicsChart = () => {
@@ -29,10 +31,11 @@ const TopicsChart = () => {
 
   return (
     <>
+      <h2 >Posts per month by topic</h2>
       <XYChart
         height={400}
         width={800}
-        margin={{ left: 60, top: 35, bottom: 38, right: 27 }}
+        margin={{ left: 60, top: 20, bottom: 10, right: 60 }}
         xScale={{ type: "time" }}
         yScale={{ type: "linear" }}
       >
@@ -41,19 +44,16 @@ const TopicsChart = () => {
           snapTooltipToDatumY
           showVerticalCrosshair
           renderTooltip={({ tooltipData }) => (
-            <div>
               <div>
-                {tooltipData.nearestDatum.key}
+                {`${toProperCase(tooltipData.nearestDatum.key)}: ${accessors.yAccessor(tooltipData.nearestDatum.datum)}`}
               </div>
-              {accessors.yAccessor(tooltipData.nearestDatum.datum)}
-            </div>
           )}
         />
         <AnimatedGrid
           columns={false}
           numTicks={4}
           lineStyle={{
-            stroke: "#e1e1e1",
+            stroke: "#a9a9a9",
             strokeLinecap: "round",
             strokeWidth: 1
           }}
