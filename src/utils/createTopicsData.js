@@ -6,20 +6,62 @@ export const createTopicsData = rawData => {
   rawData.forEach(post => {
 
     // Get the most likely topic for this post
-    let topicObject
+    // let topicObject
 
-    post.likelyTopics.forEach(possibleTopic => {
-      if(!topicObject) {
-       topicObject = possibleTopic   
-      }
+    // post.likelyTopics.forEach(possibleTopic => {
+    //   if(!topicObject) {
+    //    topicObject = possibleTopic   
+    //   }
 
-      if (possibleTopic.likelihood > topicObject.likelihood) {
-        topicObject = possibleTopic
-      } 
-      // Later, add logic for how to explicitly handle if there are two topics with equal likelihood
-    })
+    //   if (possibleTopic.likelihood > topicObject.likelihood) {
+    //     topicObject = possibleTopic
+    //   } 
+    //   // Later, add logic for how to explicitly handle if there are two topics with equal likelihood
+    // })
+
+    // const array = [
+    //   {number: 3}, { number: 1}, {number: 5}
+    // ]
+
+    // OPTION 1 - SORT
+
+    // const topicsSortedByLikelihood = [...post.likelyTopics].sort((a, b) => {
+
+    //   if(a.likelihood > b.likelihood) {
+    //     return -1
+    //   } else return 1
+
+    // })
+
+    // const topic = topicsSortedByLikelihood[0].label
+
+    // OPTION 2 - REDUCE
+
+    // post.likelyTopics.reduce(
+    //   (currentHighest, currentValue) => {
+    //     if(currentValue.likelihood > currentHighest.likelihood){
+    //       return currentHighest
+    //     }  
+    //   }
+    // )
+
+
+    const topicObject = post.likelyTopics.reduce(
+      (previousValue, currentValue) => currentValue.likelihood > previousValue.likelihood ? previousValue : currentValue    
+    )
 
     const topic = topicObject.label
+
+
+    // Minus one from the other (fewer lines)
+    
+    // Get the answer without needing the topic object variable
+
+    // > Use sort and take the first item; or use reduce
+    // This is a more readable approach
+
+
+    // const topic = topicObject.label
 
     // Prepare the date of the current post
     const datePostCreated = new Date(parseInt(post.createdAt))
@@ -70,11 +112,14 @@ export const createTopicsData = rawData => {
     // Go through the sorted topic-date objects, and if the month is not the index you would expect as we increment currentMonth, 
     // i.e. the month is missing, insert an object which has y: 0 for that month
     while(currentMonth < 12) {
-      if(topicsData[topic][currentMonth] && topicsData[topic][currentMonth].date.getMonth() !== currentMonth) {
+      const monthIndex = topicsData[topic][currentMonth]
+      const monthOfElement = topicsData[topic][currentMonth].date.getMonth()
+      if (monthIndex && monthOfElement !== currentMonth) {
         // Create a new topic-date object with the missing month, and y: 0
         const year = topicsData[topic][currentMonth].date.getFullYear()
         const month = currentMonth < 9 ? `0${currentMonth + 1}` : currentMonth + 1
         const dateString = `${year}-${month}`
+        // *Look into a better way to manipulate dates than doing it manually. Maybe use a library (e.g. Moment)
         topicsData[topic].splice(currentMonth, 0, { x: dateString, y: 0, date: null })
       } else if (!topicsData[topic][currentMonth]) {
         // Create a new topic-date object with the missing month, after we've reached the last index in the array
@@ -92,3 +137,5 @@ export const createTopicsData = rawData => {
   return topicsData
 
 }
+
+// Refactor to turn pieces of the work into functions, esp. manipulate dates, and then format them

@@ -13,7 +13,10 @@ import { createTopicsData } from "../utils/createTopicsData"
 import { toProperCase } from "../utils/toProperCase"
 import './topics-chart.css'
 
-const TopicsChart = () => {
+const TopicsChart = ({ someStyles }) => {
+
+  // FEEDBACK: Look at memoization useMemo in case props are passed in
+
   // Load data from the database
   const { loading, error, data } = useQuery(ALL_POSTS)
   
