@@ -8,7 +8,7 @@ export const createTopicsData = rawData => {
   const determineTopic = post => {
 
     const topicObject = post.likelyTopics.reduce(
-      (previousValue, currentValue) => currentValue.likelihood > previousValue.likelihood ? previousValue : currentValue
+      (previousValue, currentValue) => currentValue.likelihood > previousValue.likelihood ? currentValue : previousValue
     )
 
     return topicObject.label
@@ -35,7 +35,7 @@ export const createTopicsData = rawData => {
   const sortDataPoints = data => {
 
     Object.keys(data).forEach(topic => {
-      topicsData[topic].sort((a, b) => {
+      data[topic].sort((a, b) => {
         return a.date > b.date ? 1 : -1
       })
     })
@@ -45,7 +45,7 @@ export const createTopicsData = rawData => {
   // Add a datapoint for the months when no posts were published (i.e. where y = 0)
   const addDataPointToMissingMonths = data => {
 
-    Object.keys(topicsData).forEach(topic => {
+    Object.keys(data).forEach(topic => {
 
       let currentMonth = 0
 
@@ -113,7 +113,6 @@ export const createTopicsData = rawData => {
 
     // If a key for that topic doesn't already exist 
     // Make a new key and add the datapoint
-
     } else {
       topicsData[topic] = [newDataPoint]
     }  
